@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- DTD约束 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.llkj.system.mapper.SysRoleMapper">
+    <sql id="columns">
+        id,role_name,role_code,description,create_time,update_time,is_deleted
+    </sql>
+
+    <select id="selectPage" resultType="sysRole">
+        select
+        <include refid="columns"/>
+        from sys_role
+        <where>
+            <if test="vo.roleName!=null and vo.roleName!=''">
+                role_name like concat("%",#{vo.roleName},"%")
+            </if>
+            and is_deleted =0
+        </where>
+    </select>
+</mapper>
