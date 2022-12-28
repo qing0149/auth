@@ -9,6 +9,7 @@ import com.llkj.model.vo.SysUserQueryVo;
 import com.llkj.system.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,7 +24,10 @@ public interface SysUserService extends IService<SysUser> {
 
     void updateStatues(Long id, Integer statues);
 
-    Map<String, Object> getRolesByUserId(Long userId);
 
-    void doAssign(AssginRoleVo assginRoleVo);
+    SysUser getByUserName(String username);
+
+    Map getUserInfoByUserId(Long userId);
+    List<String> getUserButtonPermissionsByUserId(Long userId);
+
 }

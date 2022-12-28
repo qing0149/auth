@@ -9,6 +9,7 @@ import java.util.Date;
  * 生成JSON Web令牌的工具类
  */
 public class JwtHelper {
+//  365天24个小时、60分钟 60秒 一天
 
     private static long tokenExpiration = 365 * 24 * 60 * 60 * 1000;
     private static String tokenSignKey = "123456";

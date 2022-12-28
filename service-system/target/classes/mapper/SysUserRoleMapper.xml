@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- DTD约束 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.llkj.system.mapper.SysUserRoleMapper">
+    <sql id="column">
+        id
+        ,role_id,user_id,create_time,update_time,is_deleted
+    </sql>
+    <select id="selectByUserId">
+        select  <include refid="column"></include> from sys_user_role where is_deleted=0 and user_id=#{userId}
+    </select>
+</mapper>

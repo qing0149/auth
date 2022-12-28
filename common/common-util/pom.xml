@@ -26,7 +26,8 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
+<!--            provided表示只在编译和测试的的使用启用-->
+<!--            <scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

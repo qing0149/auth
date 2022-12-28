@@ -1,10 +1,14 @@
 package com.llkj.system.handler;
 
 import com.llkj.common.result.Result;
+import com.llkj.common.result.ResultCodeEnum;
 import com.llkj.system.exception.LlkjException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
 
 /**
  * @ClassName GlobalExceptionHandler
@@ -22,6 +26,13 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result error() {
         Result<Object> result =Result.fail();
+        return result;
+    }
+    @ExceptionHandler(value = AccessDeniedException.class)
+    @ResponseBody
+    public Result AccessDeniederror(AccessDeniedException exception) {
+        System.out.println(exception.getMessage());
+        Result<Object> result =Result.build(null, ResultCodeEnum.PERMISSION);
         return result;
     }
     @ExceptionHandler(value = ArithmeticException.class)

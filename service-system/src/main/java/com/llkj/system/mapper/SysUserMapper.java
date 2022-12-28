@@ -17,4 +17,5 @@ import org.apache.ibatis.annotations.Param;
 public interface SysUserMapper extends BaseMapper<SysUser> {
     IPage<SysUser> selectPage(Page<SysUser> page, @Param("vo") SysUserQueryVo userQueryVo);
 
+    void selectMenuListByUserId(Long userId);
 }

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.llkj.common.result.Result;
 import com.llkj.model.system.SysRole;
+import com.llkj.model.vo.AssginRoleVo;
 import com.llkj.model.vo.SysRoleQueryVo;
 import com.llkj.system.exception.LlkjException;
 import com.llkj.system.service.SysRoleService;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName SysRoleController
@@ -31,6 +33,21 @@ import java.util.List;
 public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
+
+    @ApiOperation(value = "根据用户获取角色数据")
+    @GetMapping("/toAssign/{userId}")
+    public Result toAssign(@PathVariable Long userId) {
+        Map<String, Object> roleMap = sysRoleService.getRolesByUserId(userId);
+
+        return Result.ok(roleMap);
+    }
+
+    @ApiOperation(value = "根据用户分配角色")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssginRoleVo assginRoleVo) {
+        sysRoleService.doAssign(assginRoleVo);
+        return Result.ok();
+    }
 
     @GetMapping("findAll")
     @ApiOperation(value = "查询所有角色")
